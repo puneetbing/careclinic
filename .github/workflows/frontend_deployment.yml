@@ -6,9 +6,13 @@ jobs:
   frontend_deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with: 
         fetch-depth: 2
+    - uses: aws-actions/configure-aws-credentials@v3
+      with:
+        role-to-assume: arn:aws:iam::328406402605:role/github-deployer
+        aws-region: us-east-1
     - name: Deployment Steps
       run: |
         IS_FRONTEND=`git diff-tree --name-only -r HEAD^ HEAD|tr " " "\n" |grep -Ec "^frontend/src\/|^frontend/public\/" || true`
@@ -28,8 +32,8 @@ jobs:
         aws s3 sync ./build s3://careclinichsr
         aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths "/*"
       env:	
-        AWS_ACCESS_KEY_ID: ${{ secrets.CARE_CLINIC_AWS_ACCESS_KEY_ID }}	
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.CARE_CLINIC_AWS_SECRET_ACCESS_KEY }}	
+        # AWS_ACCESS_KEY_ID: ${{ secrets.CARE_CLINIC_AWS_ACCESS_KEY_ID }}	
+        # AWS_SECRET_ACCESS_KEY: ${{ secrets.CARE_CLINIC_AWS_SECRET_ACCESS_KEY }}	
         CDN_DISTRIBUTION_ID: ${{ secrets.CARE_CLINIC_CDN_DISTRIBUTION_ID }}
         FRONTEND_BUCKET_NAME: ${{ secrets.CARE_CLINIC_FRONTEND_BUCKET_NAME }}
         
