@@ -24,7 +24,7 @@ jobs:
         echo " ~~~~~~~~~~~~~ NPM Build completed ~~~~~~~~~~~~~~"
         aws --version
         echo $AWS_ACCESS_KEY_ID
-        aws s3 sync ./build s3://$FRONTEND_BUCKET_NAME
+        aws s3 sync ./build s3://careclinichsr
         aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths "/*"
       env:	
         AWS_ACCESS_KEY_ID: ${{ secrets.CARE_CLINIC_AWS_ACCESS_KEY_ID }}	
