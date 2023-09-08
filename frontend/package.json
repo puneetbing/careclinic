@@ -1,6 +1,5 @@
 {
-  "name": "MediTro",
-  "homepage": "http://meditro.themetrades.com/react",
+  "name": "CareClinic",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -1,0 +1,30 @@
+name: frontend_deploy
+on:
+  push:
+    branches: main
+jobs:
+  frontend_deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with: 
+        fetch-depth: 2
+    - name: Deployment Steps
+      run: |
+        IS_FRONTEND=`git diff-tree --name-only -r HEAD^ HEAD|tr " " "\n" |grep -Ec "^frontend/src\/|^frontend/public\/" || true`
+        if [ $IS_FRONTEND -eq 0 ];then
+          echo "No frontend files found exiting !"
+          exit 0
+        fi
+        echo "✅ Frontend Files found, starting deployment ...."
+        cd frontend
+        npm install
+        npm run build
+        aws s3 sync ./build s3://$FRONTEND_BUCKET_NAME
+        aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths "/*"
+      env:	
+        AWS_ACCESS_KEY_ID: ${{ secrets.CARE_CLINIC_AWS_ACCESS_KEY_ID }}	
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.CARE_CLINIC_AWS_SECRET_ACCESS_KEY }}	
+        CDN_DISTRIBUTION_ID: ${{ secrets.CARE_CLINIC_CDN_DISTRIBUTION_ID }}
+        FRONTEND_BUCKET_NAME: ${{ secrets.CARE_CLINIC_FRONTEND_BUCKET_NAME }}
+        

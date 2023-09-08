@@ -30,7 +30,7 @@ class Markup extends Component{
 		return(
 			<>	
 			
-				{/* {<BrowserRouter basename={'/react/'}> */}
+
 				<BrowserRouter>
 					
 					<Routes>
