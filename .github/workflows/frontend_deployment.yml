@@ -27,9 +27,6 @@ jobs:
         cd frontend
         npm install
         npm run build || true
-        aws --version
-        env|grep AWS
-        aws s3 ls
         aws s3 sync ./build s3://$FRONTEND_BUCKET_NAME
         aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths "/*"
       env:	
