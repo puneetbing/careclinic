@@ -2,12 +2,12 @@ import React from 'react';
 
 // Elements
 import MainBannerSection from "../elements/main-banner";
-import AboutSection from "../elements/about";
-import WorkSection from "../elements/work";
-import AppointmentSection from "../elements/appointment";
+// import AboutSection from "../elements/about";
+// import WorkSection from "../elements/work";
+// import AppointmentSection from "../elements/appointment";
 import TestimonialSection from "../elements/testimonial";
 import ServicesSliderSection from "../elements/services-slider";
-import LatestNewsSection from "../elements/latest-news-slider";
+// import LatestNewsSection from "../elements/latest-news-slider";
 
 function Index(){
 	

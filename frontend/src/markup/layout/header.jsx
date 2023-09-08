@@ -10,7 +10,7 @@ const Header = () => {
 	
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isSearchFormOpen, setIsSearchBtn] = useState(false);
-	const quikSearchBtn = () => setIsSearchBtn(!isSearchFormOpen);
+	// const quikSearchBtn = () => setIsSearchBtn(!isSearchFormOpen);
 	const quikSearchClose = () => setIsSearchBtn(false);
 	const [activeItem, setActiveItem] = useState(null);
 	const [isMobileView, setIsMobileView] = useState(false);
@@ -29,10 +29,10 @@ const Header = () => {
 		}
 	};
 
-	const handleContactBtnClick = () => {
-		setIsMenuOpen(false);
-		// Implement the logic to toggle the contact sidebar here.
-	};
+	// const handleContactBtnClick = () => {
+	// 	setIsMenuOpen(false);
+	// 	// Implement the logic to toggle the contact sidebar here.
+	// };
 
 	const handleMenuCloseClick = () => {
 		setIsMenuOpen(false);

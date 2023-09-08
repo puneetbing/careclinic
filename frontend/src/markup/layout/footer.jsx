@@ -9,11 +9,7 @@ import ptImg2 from '../../images/shap/circle-dots.png';
 import ptImg3 from '../../images/shap/plus-blue.png';
 import ptImg4 from '../../images/shap/wave-blue.png';
 
-// Social Images
-import facebook from '../../images/social/facebook.png';
-import twitter from '../../images/social/twitter.png';
-import instagram from '../../images/social/instagram.png';
-import linkedin from '../../images/social/linkedin.png';
+
 
 class aboutSection extends Component{
 	render(){
