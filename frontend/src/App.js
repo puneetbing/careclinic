@@ -17,6 +17,7 @@ function App() {
 	return (
 		<div className="page-wraper">
 			<Markup />
+			
 		</div>
 	);
 }
