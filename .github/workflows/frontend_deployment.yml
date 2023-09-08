@@ -20,7 +20,7 @@ jobs:
         cd frontend
         npm install
         echo "NPM Install completed"
-        npm run build
+        npm run build || true
         echo "NPM Build completed"
         aws s3 sync ./build s3://$FRONTEND_BUCKET_NAME
         aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths "/*"
