@@ -23,6 +23,7 @@ jobs:
         npm run build || true
         echo " ~~~~~~~~~~~~~ NPM Build completed ~~~~~~~~~~~~~~"
         aws --version
+        env|grep AWS
         echo $AWS_ACCESS_KEY_ID
         aws s3 sync ./build s3://careclinichsr
         aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths "/*"
